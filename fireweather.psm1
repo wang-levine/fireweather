@@ -1,4 +1,20 @@
 function Get-FFMC {
+    <#
+    .SYNOPSIS
+    Calculates the Fine Fuel Moisture Code (FFMC) from the input parameters.
+    .DESCRIPTION
+    Calculates the Fine Fuel Moisture Code (FFMC) from the input parameters.
+    .PARAMETER Temperature
+    Noon temperature (°C)
+    .PARAMETER RelativeHumidity
+    Noon relative humidity (%)
+    .PARAMETER WindSpeed
+    Noon wind speed (km/h)
+    .PARAMETER Rainfall
+    Rain fall in open over previous 24 hours, at noon (mm)
+    .PARAMETER PreviousFFMC
+    Previous day’s FFMC
+    #>
     param (
         [Parameter(Mandatory = $true)]
         [double]$Temperature,
@@ -58,6 +74,22 @@ function Get-FFMC {
 }
 
 function Get-DMC {
+    <#
+    .SYNOPSIS
+    Calculates the Duff Moisture Code (DMC) from the input parameters.
+    .DESCRIPTION
+    Calculates the Duff Moisture Code (DMC) from the input parameters.
+    .PARAMETER Temperature
+    Noon temperature (°C)
+    .PARAMETER RelativeHumidity
+    Noon relative humidity (%)
+    .PARAMETER Rainfall
+    Rain fall in open over previous 24 hours, at noon (mm)
+    .PARAMETER PreviousDMC
+    Previous day’s DMC
+    .PARAMETER Month
+    Month (1-12)
+    #>
     param (
         [Parameter(Mandatory = $true)]
         [double]$Temperature,
@@ -114,6 +146,20 @@ function Get-DMC {
 }
 
 function Get-DC {
+    <#
+    .SYNOPSIS
+    Calculates the Drought Code (DC) from the input parameters.
+    .DESCRIPTION
+    Calculates the Drought Code (DC) from the input parameters.
+    .PARAMETER Temperature
+    Noon temperature (°C)
+    .PARAMETER Rainfall
+    Rain fall in open over previous 24 hours, at noon (mm)
+    .PARAMETER PreviousDC
+    Previous day’s DC
+    .PARAMETER Month
+    Month (1-12)
+    #>
     param (
         [Parameter(Mandatory = $true)]
         [double]$Temperature,
@@ -161,6 +207,16 @@ function Get-DC {
 }
 
 function Get-ISI {
+    <#
+    .SYNOPSIS
+    Calculates the Initial Spread Index (ISI) from the input parameters.
+    .DESCRIPTION
+    Calculates the Initial Spread Index (ISI) from the input parameters.
+    .PARAMETER FFMC
+    Fine Fuel Moisture Code (FFMC)
+    .PARAMETER WindSpeed
+    Noon wind speed (km/h)
+    #>
     param (
         [Parameter(Mandatory = $true)]
         [double]$FFMC,
@@ -179,6 +235,16 @@ function Get-ISI {
 }
 
 function Get-BUI {
+    <#
+    .SYNOPSIS
+    Calculates the Buildup Index (BUI) from the input parameters.
+    .DESCRIPTION
+    Calculates the Buildup Index (BUI) from the input parameters.
+    .PARAMETER DMC
+    Duff Moisture Code (DMC)
+    .PARAMETER DC
+    Drought Code (DC)
+    #>
     param (
         [Parameter(Mandatory = $true)]
         [double]$DMC,
@@ -201,6 +267,16 @@ function Get-BUI {
 }
 
 function Get-FWI {
+    <#
+    .SYNOPSIS
+    Calculates the Fire Weather Index (FWI) from the input parameters.
+    .DESCRIPTION
+    Calculates the Fire Weather Index (FWI) from the input parameters.
+    .PARAMETER ISI
+    Initial Spread Index (ISI)
+    .PARAMETER BUI
+    Buildup Index (BUI)
+    #>
     param (
         [Parameter(Mandatory = $true)]
         [double]$ISI,
@@ -227,6 +303,28 @@ function Get-FWI {
 }
 
 function Get-Indicies {
+    <#
+    .SYNOPSIS
+    Calculates the Fire Weather Indicies from the input parameters.
+    .DESCRIPTION
+    Calculates the Fire Weather Indicies from the input parameters.
+    .PARAMETER Temperature
+    Noon temperature (°C)
+    .PARAMETER RelativeHumidity
+    Noon relative humidity (%)
+    .PARAMETER WindSpeed
+    Noon wind speed (km/h)
+    .PARAMETER Rainfall
+    Rain fall in open over previous 24 hours, at noon (mm)
+    .PARAMETER Month
+    Month (1-12)
+    .PARAMETER PreviousFFMC
+    Previous day’s FFMC
+    .PARAMETER PreviousDMC
+    Previous day’s DMC
+    .PARAMETER PreviousDC
+    Previous day’s DC
+    #>
     param (
         [Parameter(Mandatory = $true)]
         [double]$Temperature,
